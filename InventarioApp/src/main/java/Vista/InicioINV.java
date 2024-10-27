@@ -1,19 +1,26 @@
+package Vista;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package prueba1;
-import java.util.List;
+
+
+import conexionbd.BD;
+
 /**
  *
  * @author Usuario
  */
-public interface  IMovimientos {
+public class InicioINV {
+    public static void main (String [] args){
     
-    void registrarTransaccion();
+    System.out.println("Registrate");
     
-    void obtenerDetallesTransaccion();
+    BD conexion = new BD();
+    conexion.establecerConexion();
+   
     
-    List <Movimientos> verHistorialTransacciones();
     
+    }
 }

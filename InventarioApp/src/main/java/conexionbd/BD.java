@@ -1,8 +1,10 @@
+package conexionbd;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package prueba1;
+
 
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -16,7 +18,7 @@ public class BD {
     Connection conectar = null;
     
     String usuario = "lestad";
-    String contrasenia = "Cr7goat2023";
+    String contrasenia = "Cr7goat2024";
     String bd="RADIOSHACK1";
     String ip="localhost";
     String puerto="1433";
@@ -26,7 +28,7 @@ public class BD {
     public Connection establecerConexion(){
     
     try{
-     String cadena = "jdbc:sqlserver://"+ip+":"+puerto+";databaseName="+bd;        
+     String cadena = "jdbc:sqlserver://localhost:1433;databaseName=RADIOSHACK1;encrypt=false;trustServerCertificate=true";      
      conectar=DriverManager.getConnection(cadena,usuario,contrasenia);
         JOptionPane.showMessageDialog(null, "Se conecto correctamente a la Base de Datos");
     } catch (Exception e){

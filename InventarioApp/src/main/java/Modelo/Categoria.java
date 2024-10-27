@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package prueba1;
+package Modelo;
 
 /**
  *
  * @author Usuario
  */
+import java.util.Scanner;
 public class Categoria {
 
     private String nombre_categoria;
@@ -40,8 +41,9 @@ public class Categoria {
         // agregar categoría
     }
 
-    public void eliminarCategoria() {
-        // eliminar categoría
+    public  void eliminarCategoria() {
+        
+         
     }
 
     public void buscarCategoria() {
