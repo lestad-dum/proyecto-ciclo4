@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo;
-
+import conexionbd.BD;
+import java.sql.*;
 /**
  *
  * @author Usuario
  */
-import java.util.Scanner;
+
 public class Categoria {
 
     private String nombre_categoria;
@@ -38,15 +39,56 @@ public class Categoria {
     
     
     public void agregarCategoria() {
-        // agregar categoría
-    }
-
-    public  void eliminarCategoria() {
+      
+        BD conexion = new BD();
+        Connection mew = conexion.establecerConexion();
+        String coma = "INSERT INTO CATEGORIAS(nombre_categoria) VALUES (?)";
+       
+        try (PreparedStatement gin = mew.prepareStatement(coma)){
+            gin.setString(1,nombre_categoria);
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+            
+        }
         
-         
     }
 
-    public void buscarCategoria() {
-        // buscar categoría
+    public  void eliminarCategoria1() {
+        
+         BD conexion = new BD();
+        Connection guf = conexion.establecerConexion();
+         String mef = "DELETE FROM CATEGORIAS WHERE ID_CATEGORIA = ?";
+         
+         try(PreparedStatement gin = guf.prepareStatement(mef)){
+             gin.setInt(1, id_categoria);
+         } catch (SQLException e){
+             e.printStackTrace();
+         }
+        
     }
+    
+    public void eliminarCategoria2(){
+        BD conexion = new BD();
+        Connection guf = conexion.establecerConexion();
+         String sql = "DELETE FROM CATEGORIAS WHERE NOMBRE_CATEGORIA = ?";
+   
+           try(PreparedStatement gin = guf.prepareStatement(sql)){
+             gin.setString(1, nombre_categoria);
+         } catch (SQLException e){
+             e.printStackTrace();
+         }
+    
+    
+    }
+
+    public void buscarCategoria1() {
+      
+    }
+    
+    
+    public void buscarCategoria2() {
+      
+    }
+    
 }

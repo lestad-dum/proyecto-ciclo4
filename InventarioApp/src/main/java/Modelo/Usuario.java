@@ -8,6 +8,8 @@ package Modelo;
  *
  * @author Usuario
  */
+import java.security.*;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -39,6 +41,28 @@ public class Usuario extends Persona {
         this.hashContraseña = hashContraseña;
     }
 
+    public static String hashPassword ( String password) {
+        
+        try{
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte [] hash = md.digest(password.getBytes());
+            StringBuilder hexa = new StringBuilder();
+            
+            for(int i=0; i<hash.length;i++){
+                byte b = hash[i];
+                String hexab = String.format("%02x", b);
+                hexa.append(hexab);
+                
+            }
+            
+           return null;
+        } catch (NoSuchAlgorithmException e){
+            throw new RuntimeException (e);
+        }
+      
+        
+    }
+    
     private boolean iniciarSesion() {
         // Implementación de inicio de sesión
         return true;
