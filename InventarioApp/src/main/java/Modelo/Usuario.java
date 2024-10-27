@@ -8,9 +8,11 @@ package Modelo;
  *
  * @author Usuario
  */
+import conexionbd.BD;
 import java.security.*;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario extends Persona {
@@ -55,7 +57,7 @@ public class Usuario extends Persona {
                 
             }
             
-           return null;
+           return hexa.toString();
         } catch (NoSuchAlgorithmException e){
             throw new RuntimeException (e);
         }
@@ -63,23 +65,50 @@ public class Usuario extends Persona {
         
     }
     
-    private boolean iniciarSesion() {
-        // Implementación de inicio de sesión
-        return true;
+    private boolean iniciarSesion(String nombreUsuario, String password) {
+       String hashedPassword = hashPassword(password);
+        try (Connection con = new BD().establecerConexion()) {
+            String query = "SELECT * FROM USUARIOS WHERE NOMBRE = ? AND HASH_CONTRASEÑA = ?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, nombreUsuario);
+            stmt.setString(2, hashedPassword);
+            ResultSet rs = stmt.executeQuery();
+
+            return rs.next(); // Retorna true si hay un usuario coincidente
+        } catch (SQLException e) {
+            System.err.println("Error al iniciar sesión: " + e.getMessage());
+            return false;
+        }
     }
+    
 
     private  void cerrarSesion() {
         // Implementación de cierre de sesión
     }
 
     private List<Movimientos> verTransacciones() {
-        // Retorna la lista de transacciones
+       
         return null;
+       
     }
 
     @Override
-    public void registrarUsuario() {
-        // Implementación de registrar usuario
+    
+ public void registrarUsuario() {
+        String hashedPassword = hashPassword(this.hashContraseña); // Hashear la contraseña
+        try (Connection con = new BD().establecerConexion()) {
+            String query = "INSERT INTO USUARIOS (ID_PE, NOMBRE, ROL, HASH_CONTRASEÑA) VALUES (?, ?, ?, ?)";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, this.getIdPersona());
+            stmt.setString(2, this.getNombre());
+            stmt.setString(3, this.rol);
+            stmt.setString(4, hashedPassword);
+            stmt.executeUpdate();
+            System.out.println("Usuario registrado exitosamente.");
+        } catch (SQLException e) {
+            System.err.println("Error al registrar usuario: " + e.getMessage());
+        }
     }
+        
 }
 

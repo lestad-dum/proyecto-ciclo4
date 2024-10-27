@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelo;
+import conexionbd.BD;
+import java.sql.*;
 import java.time.LocalDate;
 /**
  *
@@ -47,4 +49,5 @@ public abstract class Persona {
     }
 
     public abstract void registrarUsuario();
+    
 }
