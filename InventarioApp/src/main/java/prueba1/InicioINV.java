@@ -13,6 +13,8 @@ public class InicioINV {
     
     System.out.println("Registrate");
     
+    BD conexion = new BD();
+    conexion.establecerConexion();
     
     }
 }

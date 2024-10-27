@@ -10,5 +10,19 @@
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
         <exec.mainClass>com.mycompany.inventarioapp.InventarioApp</exec.mainClass>
+        
     </properties>
+    
+    <dependencies>
+        
+                              <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+                   <dependency>
+                          <groupId>com.microsoft.sqlserver</groupId>
+                           <artifactId>mssql-jdbc</artifactId>
+                          <version>12.8.1.jre11</version>
+                   </dependency>
+
+        
+    </dependencies>
+    
 </project>
