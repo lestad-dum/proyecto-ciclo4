@@ -22,6 +22,29 @@ public abstract class Persona {
        
    }
     
+     public int getIdPersona() {
+        return id_persona;
+    }
+
+    public void setIdPersona(int id_persona) {
+        this.id_persona = id_persona;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fecha_nacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
     public abstract void registrarUsuario();
-    
 }

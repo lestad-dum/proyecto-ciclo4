@@ -28,6 +28,54 @@ public class Movimientos implements IMovimientos {
         this.fecha = fecha;
     }
 
+    public int getId_transaccion() {
+        return id_transaccion;
+    }
+
+    public void setId_transaccion(int id_transaccion) {
+        this.id_transaccion = id_transaccion;
+    }
+
+    public int getId_usu() {
+        return id_usu;
+    }
+
+    public void setId_usu(int id_usu) {
+        this.id_usu = id_usu;
+    }
+
+    public int getId_proc() {
+        return id_proc;
+    }
+
+    public void setId_proc(int id_proc) {
+        this.id_proc = id_proc;
+    }
+
+    public String getTipo_transaccion() {
+        return tipo_transaccion;
+    }
+
+    public void setTipo_transaccion(String tipo_transaccion) {
+        this.tipo_transaccion = tipo_transaccion;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
 
     @Override
     public void registrarTransaccion() {
