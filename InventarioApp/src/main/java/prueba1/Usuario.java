@@ -23,6 +23,22 @@ public class Usuario extends Persona {
         
     }
 
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public String getHashContraseña() {
+        return hashContraseña;
+    }
+
+    public void setHashContraseña(String hashContraseña) {
+        this.hashContraseña = hashContraseña;
+    }
+
     private boolean iniciarSesion() {
         // Implementación de inicio de sesión
         return true;

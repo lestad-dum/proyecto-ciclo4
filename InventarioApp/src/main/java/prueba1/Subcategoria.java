@@ -15,7 +15,7 @@ public class Subcategoria {
     private String nombre_sub;
 
     public void agregarSubCategoria() {
-        // Iagregar subcategoría
+        
     }
 
     public void eliminarSubCategoria() {
