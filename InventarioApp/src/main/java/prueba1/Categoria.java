@@ -10,4 +10,18 @@ package prueba1;
  */
 public class Categoria {
     
+    private String nombre_categoria;
+    private int id_categoria;
+
+    public void agregarCategoria() {
+        // agregar categoría
+    }
+
+    public void eliminarCategoria() {
+        // eliminar categoría
+    }
+
+    public void buscarCategoria() {
+        // buscar categoría
+    }
 }

@@ -8,6 +8,11 @@ package prueba1;
  *
  * @author Usuario
  */
-public class IProductos {
+public interface IProductos {
     
+    void agregarProducto();
+    void eliminarProducto();
+    void actualizarStock();
+    void buscarProducto();
 }
+

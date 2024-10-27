@@ -10,4 +10,20 @@ package prueba1;
  */
 public class Subcategoria {
     
+    private int id_subcate;
+    private int id_cate;
+    private String nombre_sub;
+
+    public void agregarSubCategoria() {
+        // Iagregar subcategoría
+    }
+
+    public void eliminarSubCategoria() {
+        // eliminar subcategoría
+    }
+
+    public void buscarCategoria() {
+        // buscar categoría
+    }
 }
+
