@@ -17,7 +17,8 @@ public class Categoria {
 
     public Categoria(int id_categoria, String nombre_categoria) {
     this.id_categoria = id_categoria;
-    this.nombre_categoria = nombre_categoria;
+ 
+   this.nombre_categoria = nombre_categoria;
 }
 
     
@@ -46,6 +47,7 @@ public class Categoria {
        
         try (PreparedStatement gin = mew.prepareStatement(coma)){
             gin.setString(1,nombre_categoria);
+            gin.execute();
             
         } catch (SQLException e){
             e.printStackTrace();
@@ -62,8 +64,10 @@ public class Categoria {
          
          try(PreparedStatement gin = guf.prepareStatement(mef)){
              gin.setInt(1, id_categoria);
+             gin.execute();
          } catch (SQLException e){
              e.printStackTrace();
+        
          }
         
     }
@@ -75,6 +79,7 @@ public class Categoria {
    
            try(PreparedStatement gin = guf.prepareStatement(sql)){
              gin.setString(1, nombre_categoria);
+             gin.execute();
          } catch (SQLException e){
              e.printStackTrace();
          }
@@ -83,12 +88,39 @@ public class Categoria {
     }
 
     public void buscarCategoria1() {
+        
+         BD conexion = new BD();
+        Connection guf = conexion.establecerConexion();
+         String sick = "SELECT * FROM CATEGORIAS WHERE NOMBRE_CATEGORIA = ?";
+   
+           try(PreparedStatement gin = guf.prepareStatement(sick)){
+             gin.setString(1, nombre_categoria);
+             ResultSet nick = gin.executeQuery();
+             while(nick.next()){
+                 System.out.println("ID: " + nick.getInt("ID_CATEGORIA") + ", Nombre: " + nick.getString("NOMBRE_CATEGORIA"));
+             }
+         } catch (SQLException e){
+             e.printStackTrace();
+         }
+    
       
     }
     
     
     public void buscarCategoria2() {
-      
+       BD conexion = new BD();
+        Connection guf = conexion.establecerConexion();
+         String mef = "SELECT * FROM CATEGORIAS WHERE ID_CATEGORIA = ?";
+         
+         try(PreparedStatement gin = guf.prepareStatement(mef)){
+             gin.setInt(1, id_categoria);
+             ResultSet nick=gin.executeQuery();
+             while (nick.next()){
+                 System.out.println("ID: " + nick.getInt("ID_CATEGORIA") + ", Nombre: " + nick.getString("NOMBRE_CATEGORIA"));
+             }
+         } catch (SQLException e){
+             e.printStackTrace();
+         }
     }
     
 }

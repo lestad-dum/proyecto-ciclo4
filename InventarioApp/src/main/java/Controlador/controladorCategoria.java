@@ -5,23 +5,22 @@
 
 
 package Controlador;
-import conexionbd.*;
+
 import Modelo.*;
 /**
  *
  * @author Usuario
  */
 public class controladorCategoria {
-    
- 
-    
+
     public void AgregarCategoria(int id_categoria, String nombre_categoria){
     
-    System.out.println("Seleccione como buscar la categoria");
-    
+    Categoria gin = new Categoria (id_categoria, nombre_categoria);
     
     
     }
+    
+    
    
     
 }
