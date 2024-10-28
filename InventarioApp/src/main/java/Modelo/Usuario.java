@@ -8,6 +8,7 @@ package Modelo;
  *
  * @author Usuario
  */
+import javax.swing.*;
 import conexionbd.BD;
 import java.security.*;
 import java.sql.*;
@@ -104,9 +105,9 @@ public class Usuario extends Persona {
             stmt.setString(3, this.rol);
             stmt.setString(4, hashedPassword);
             stmt.executeUpdate();
-            System.out.println("Usuario registrado exitosamente.");
+            JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
         } catch (SQLException e) {
-            System.err.println("Error al registrar usuario: " + e.getMessage());
+           JOptionPane.showMessageDialog(null, "Error al registrar usuario");
         }
     }
         

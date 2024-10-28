@@ -173,7 +173,11 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+         this.dispose();
+         JOptionPane.showMessageDialog(null, "Es necesario que ingreses tus credenciales para realizar esta acción");
+         verificacion register = new verificacion();
+         
+         register.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -231,7 +235,4 @@ public class Login extends javax.swing.JFrame {
     private java.awt.Label label2;
     // End of variables declaration//GEN-END:variables
 
-  
-    
-    
 }
