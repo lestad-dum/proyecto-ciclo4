@@ -17,17 +17,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario extends Persona {
+    private String nombreUsuario;
     private String rol;
     private String hashContraseña;
 
     public Usuario(int id_persona, String nombre, LocalDate fecha_nacimiento, String rol, String hashContraseña)  {
         
         super(id_persona, nombre, fecha_nacimiento);
+        this.nombreUsuario=nombreUsuario;
         this.rol = rol;
         this.hashContraseña = hashContraseña;
         
     }
 
+    public String getnombreUsuario(){
+        return nombreUsuario;
+    }
+    
+    public void setnombreUsuario(String nombreUsuario){
+        this.nombreUsuario=nombreUsuario;
+    }
+    
+    
     public String getRol() {
         return rol;
     }
@@ -77,7 +88,7 @@ public class Usuario extends Persona {
 
             return rs.next(); // Retorna true si hay un usuario coincidente
         } catch (SQLException e) {
-            System.err.println("Error al iniciar sesión: " + e.getMessage());
+          JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecto");
             return false;
         }
     }
