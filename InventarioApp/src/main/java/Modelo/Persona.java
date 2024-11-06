@@ -41,7 +41,7 @@ public abstract class Persona {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {   
         return fecha_nacimiento;
     }
 
