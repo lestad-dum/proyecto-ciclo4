@@ -6,6 +6,7 @@ package Modelo;
 import conexionbd.BD;
 import java.sql.*;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Usuario
@@ -48,6 +49,14 @@ public abstract class Persona {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
+    public void registrarPersona(){
+        try (Connection meow= new BD().establecerConexion()){
+            
+        } catch (SQLException e){
+            System.err.println("Error en el registro en la base de datos");
+            JOptionPane.showMessageDialog(null,"Error al registrar persona, intente de nuevo");
+        }
+    }
     public abstract void registrarUsuario();
     
 }
