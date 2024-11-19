@@ -17,18 +17,18 @@ public class BD {
     
     Connection conectar = null;
     
-    String usuario = "lestad";
-    String contrasenia = "Cr7goat2024";
+    String usuario = "kira";
+    String contrasenia = "indesifrable";
     String bd="RADIOSHACK1";
     String ip="localhost";
-    String puerto="1454";
+    String puerto="1433";
     
     String cadena="jdbc:sqlserver://"+ip+":"+puerto+"/"+bd;
     
     public Connection establecerConexion(){
     
     try{
-     String cadena = "jdbc:sqlserver://localhost:1454;databaseName=RADIOSHACK1;encrypt=false;trustServerCertificate=true";      
+     String cadena = "jdbc:sqlserver://localhost:1433;databaseName=RADIOSHACK1;encrypt=false;trustServerCertificate=true";      
      conectar=DriverManager.getConnection(cadena,usuario,contrasenia);
         JOptionPane.showMessageDialog(null, "Se conecto correctamente a la Base de Datos");
     } catch (Exception e){

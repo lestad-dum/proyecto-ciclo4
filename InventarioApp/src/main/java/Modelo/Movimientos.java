@@ -4,11 +4,11 @@
  */
 package Modelo;
 
-/**
- *
- * @author Usuario
- */
+import conexionbd.BD;
+import javax.swing.*;
+import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movimientos implements IMovimientos {
@@ -28,68 +28,71 @@ public class Movimientos implements IMovimientos {
         this.fecha = fecha;
     }
 
-    public int getId_transaccion() {
-        return id_transaccion;
-    }
-
-    public void setId_transaccion(int id_transaccion) {
-        this.id_transaccion = id_transaccion;
-    }
-
-    public int getId_usu() {
-        return id_usu;
-    }
-
-    public void setId_usu(int id_usu) {
-        this.id_usu = id_usu;
-    }
-
-    public int getId_proc() {
-        return id_proc;
-    }
-
-    public void setId_proc(int id_proc) {
-        this.id_proc = id_proc;
-    }
-
-    public String getTipo_transaccion() {
-        return tipo_transaccion;
-    }
-
-    public void setTipo_transaccion(String tipo_transaccion) {
-        this.tipo_transaccion = tipo_transaccion;
-    }
-
-    public String getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
-
     @Override
     public void registrarTransaccion() {
-        // registrar una transacción
+        try (Connection con = new BD().establecerConexion()) {
+            String query = "INSERT INTO MOVIMIENTOS (ID_USU, ID_PROC, TIPO_TRANSACCION, CANTIDAD, FECHA) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, this.id_usu);
+            stmt.setInt(2, this.id_proc);
+            stmt.setString(3, this.tipo_transaccion);
+            stmt.setString(4, this.cantidad);
+            stmt.setTimestamp(5, Timestamp.valueOf(this.fecha));
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Transacción registrada correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al registrar la transacción");
+        }
     }
 
     @Override
     public void obtenerDetallesTransaccion() {
-        // obtener detalles de una transacción
+        try (Connection con = new BD().establecerConexion()) {
+            String query = "SELECT * FROM MOVIMIENTOS WHERE ID_TRANSACCION = ?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, this.id_transaccion);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                this.id_usu = rs.getInt("ID_USU");
+                this.id_proc = rs.getInt("ID_PROC");
+                this.tipo_transaccion = rs.getString("TIPO_TRANSACCION");
+                this.cantidad = rs.getString("CANTIDAD");
+                this.fecha = rs.getTimestamp("FECHA").toLocalDateTime();
+                JOptionPane.showMessageDialog(null, "Detalles de la transacción obtenidos correctamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró la transacción");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener detalles de la transacción");
+        }
     }
 
     @Override
     public List<Movimientos> verHistorialTransacciones() {
-        //  ver historial de transacciones
-        return null;
+        List<Movimientos> historial = new ArrayList<>();
+        try (Connection con = new BD().establecerConexion()) {
+            String query = "SELECT * FROM MOVIMIENTOS WHERE ID_USU = ?";
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setInt(1, this.id_usu);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Movimientos movimiento = new Movimientos(
+                    rs.getInt("ID_TRANSACCION"),
+                    rs.getInt("ID_USU"),
+                    rs.getInt("ID_PROC"),
+                    rs.getString("TIPO_TRANSACCION"),
+                    rs.getString("CANTIDAD"),
+                    rs.getTimestamp("FECHA").toLocalDateTime()
+                );
+                historial.add(movimiento);
+            }
+            JOptionPane.showMessageDialog(null, "Historial de transacciones obtenido correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al obtener el historial de transacciones");
+        }
+        return historial;
     }
 }
+

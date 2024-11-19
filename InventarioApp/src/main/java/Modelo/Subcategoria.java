@@ -4,24 +4,21 @@
  */
 package Modelo;
 
-/**
- *
- * @author Usuario
- */
+import conexionbd.BD;
+import java.sql.*;
+
 public class Subcategoria {
-    
+
     private int id_subcate;
     private int id_cate;
     private String nombre_sub;
 
-    public Subcategoria (int id_subcate, int id_cate, String nombre_sub){
-    
-    this.id_cate=id_cate;
-    this.id_subcate=id_subcate;
-    this.nombre_sub=nombre_sub;
+    public Subcategoria(int id_subcate, int id_cate, String nombre_sub) {
+        this.id_cate = id_cate;
+        this.id_subcate = id_subcate;
+        this.nombre_sub = nombre_sub;
     }
-    
-    
+
     public int getId_subcate() {
         return id_subcate;
     }
@@ -46,16 +43,56 @@ public class Subcategoria {
         this.nombre_sub = nombre_sub;
     }
 
+    // Método para agregar una nueva subcategoría
     public void agregarSubCategoria() {
+        BD conexion = new BD();
+        Connection conn = conexion.establecerConexion();
+        String query = "INSERT INTO SUBCATEGORIA (ID_CATE, NOMBRE_SUB) VALUES (?, ?)";
         
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id_cate);
+            stmt.setString(2, nombre_sub);
+            stmt.executeUpdate();
+            System.out.println("Subcategoría agregada exitosamente.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+    // Método para eliminar una subcategoría por ID
     public void eliminarSubCategoria() {
-        // eliminar subcategoría
+        BD conexion = new BD();
+        Connection conn = conexion.establecerConexion();
+        String query = "DELETE FROM SUBCATEGORIA WHERE ID_SUBCATE = ?";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id_subcate);
+            stmt.executeUpdate();
+            System.out.println("Subcategoría eliminada exitosamente.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void buscarCategoria() {
-        // buscar categoría
+    // Método para buscar una subcategoría por nombre
+    public void buscarSubCategoria() {
+        BD conexion = new BD();
+        Connection conn = conexion.establecerConexion();
+        String query = "SELECT * FROM SUBCATEGORIA WHERE NOMBRE_SUB = ?";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, nombre_sub);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                System.out.println("ID: " + rs.getInt("ID_SUBCATE") +
+                                   ", ID_CATE: " + rs.getInt("ID_CATE") +
+                                   ", Nombre: " + rs.getString("NOMBRE_SUB"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
+
 
