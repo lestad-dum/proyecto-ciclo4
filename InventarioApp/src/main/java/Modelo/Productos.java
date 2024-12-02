@@ -10,7 +10,7 @@ import java.sql.*;
 
 public class Productos implements IProductos {
     private int id_producto;
-    private int id_categoria;
+    private int id_division;
     private String nombre;
     private String descripcion;
     private double precio;
@@ -18,9 +18,9 @@ public class Productos implements IProductos {
     private String marca;
     private String color;
 
-    public Productos(int id_producto, int id_categoria, String nombre, String descripcion, double precio, int cantidad_stock, String marca, String color) {
+    public Productos(int id_producto, int id_division, String nombre, String descripcion, double precio, int cantidad_stock, String marca, String color) {
         this.id_producto = id_producto;
-        this.id_categoria = id_categoria;
+        this.id_division = id_division;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -32,9 +32,9 @@ public class Productos implements IProductos {
     @Override
     public void agregarProducto() {
         try (Connection con = new BD().establecerConexion()) {
-            String query = "INSERT INTO PRODUCTOS (ID_CATEGORIA, NOMBRE, DESCRIPCION, PRECIO, CANTIDAD_STOCK, MARCA, COLOR) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO PRODUCTOS (ID_DIVISION, NOMBRE, DESCRIPCION, PRECIO, CANTIDAD_STOCK, MARCA, COLOR) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, this.id_categoria);
+            stmt.setInt(1, this.id_division);
             stmt.setString(2, this.nombre);
             stmt.setString(3, this.descripcion);
             stmt.setDouble(4, this.precio);
@@ -90,7 +90,7 @@ public class Productos implements IProductos {
             
             if (rs.next()) {
                 this.id_producto = rs.getInt("ID_PRODUCTO");
-                this.id_categoria = rs.getInt("ID_CATEGORIA");
+                this.id_division = rs.getInt("ID_DIVISION");
                 this.descripcion = rs.getString("DESCRIPCION");
                 this.precio = rs.getDouble("PRECIO");
                 this.cantidad_stock = rs.getInt("CANTIDAD_STOCK");

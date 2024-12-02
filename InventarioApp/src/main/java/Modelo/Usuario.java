@@ -86,6 +86,8 @@ public class Usuario extends Persona {
        
     }
 
+    
+    
     @Override
     
  public void registrarUsuario() {
@@ -104,5 +106,9 @@ public class Usuario extends Persona {
         }
     }
         
+ 
+ 
+ 
+ 
 }
 

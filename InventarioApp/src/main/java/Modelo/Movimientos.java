@@ -54,6 +54,7 @@ public class Movimientos implements IMovimientos {
             ResultSet rs = stmt.executeQuery();
             
             if (rs.next()) {
+               this.id_transaccion=rs.getInt("ID_TRANSACCION");
                 this.id_usu = rs.getInt("ID_USU");
                 this.id_proc = rs.getInt("ID_PROC");
                 this.tipo_transaccion = rs.getString("TIPO_TRANSACCION");
