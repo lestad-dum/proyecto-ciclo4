@@ -30,21 +30,21 @@ public class Productos implements IProductos {
     }
 
     @Override
-    public void agregarProducto() {
+    public void agregarProducto(int id_division, String nombre, String descripcion, double precio, int cantidad_stock, String marca, String color) {
         try (Connection con = new BD().establecerConexion()) {
-            String query = "INSERT INTO PRODUCTOS (ID_DIVISION, NOMBRE, DESCRIPCION, PRECIO, CANTIDAD_STOCK, MARCA, COLOR) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO PRODUCTOS (ID_DIVISION, NOMBRE, DESCRIPCIÓN_P, PRECIO, CANTIDAD_STO, MARCA, COLOR) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, this.id_division);
-            stmt.setString(2, this.nombre);
-            stmt.setString(3, this.descripcion);
-            stmt.setDouble(4, this.precio);
-            stmt.setInt(5, this.cantidad_stock);
-            stmt.setString(6, this.marca);
-            stmt.setString(7, this.color);
+            stmt.setInt(1, id_division);
+            stmt.setString(2, nombre);
+            stmt.setString(3, descripcion);
+            stmt.setDouble(4, precio);
+            stmt.setInt(5, cantidad_stock);
+            stmt.setString(6, marca);
+            stmt.setString(7, color);
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Producto agregado correctamente");
+           System.out.println("Producto agregado correctamente");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al agregar el producto");
+            System.out.println("Error al agregar el producto");
         }
     }
 

@@ -1,9 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+/** */
 package Modelo;
-/**
+
 
 /**
  *
@@ -13,7 +13,6 @@ import javax.swing.*;
 import conexionbd.BD;
 import java.security.*;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class Usuario extends Persona {
     private String rol;
     private String hashContraseña;
 
-    public Usuario(int id_persona, String nombre, LocalDate fecha_nacimiento,String nombreUsuario, String rol, String hashContraseña)  {
+    public Usuario(int id_persona, String nombre, String fecha_nacimiento,String nombreUsuario, String rol, String hashContraseña)  {
         
         super(id_persona, nombre, fecha_nacimiento);
         this.nombreUsuario=nombreUsuario;
@@ -56,8 +55,8 @@ public class Usuario extends Persona {
         this.hashContraseña = hashContraseña;
     }
 
-    public static String hashPassword ( String password) {
-        
+            public static String hashPassword ( String password) {
+
         try{
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte [] hash = md.digest(password.getBytes());
@@ -76,9 +75,9 @@ public class Usuario extends Persona {
         }
       
         
-    }
-  
- 
+       
+
+}
 
     private List<Movimientos> verTransacciones() {
        
@@ -90,7 +89,7 @@ public class Usuario extends Persona {
     
     @Override
     
- public void registrarUsuario(String nombre, LocalDate fecha, String nombreusu, String rol, String contra) {
+ public void registrarUsuario(String nombre, String fecha, String nombreusu, String rol, String contra) {
      
        int idPersona = registrarPersona(nombre, fecha);
     
@@ -99,7 +98,7 @@ public class Usuario extends Persona {
         return;
     }
      
-        String hashedPassword = hashPassword(this.hashContraseña); // Hashear la contraseña
+        String hashedPassword = hashPassword(contra); // Hashear la contraseña
         try (Connection con = new BD().establecerConexion()) {
             String query = "INSERT INTO USUARIOS (ID_PE, NOMBRE, ROL, HASH_CONTRASEÑA) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(query);
@@ -109,8 +108,9 @@ public class Usuario extends Persona {
             stmt.setString(4, hashedPassword);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
+            
         } catch (SQLException e) {
-           JOptionPane.showMessageDialog(null, "Error al registrar usuario");
+           System.out.println("Error al registrar usuario");
         }
     }
         

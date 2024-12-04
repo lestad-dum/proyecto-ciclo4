@@ -10,7 +10,7 @@ package Modelo;
  */
 public interface IProductos {
     
-    void agregarProducto();
+    void agregarProducto(int id_division, String nombre, String descripcion, double precio, int cantidad_stock, String marca, String colo);
     void eliminarProducto();
     void actualizarStock();
     void buscarProducto();

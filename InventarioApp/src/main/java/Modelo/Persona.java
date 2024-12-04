@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
 public abstract class Persona {
     private int id_persona;
     public String nombre;
-    private LocalDate fecha_nacimiento;
+    private String fecha_nacimiento;
     
     
-   public Persona (int id_persona, String nombre, LocalDate fecha_nacimiento){
+   public Persona (int id_persona, String nombre, String fecha_nacimiento){
        
        this.id_persona=id_persona;
        this.nombre=nombre;
@@ -41,23 +41,21 @@ public abstract class Persona {
         this.nombre = nombre;
     }
 
-    public LocalDate getFechaNacimiento() {   
+    public String getFechaNacimiento() {   
         return fecha_nacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fecha_nacimiento) {
+    public void setFechaNacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public int registrarPersona(String nombre, LocalDate fecha){
-         int idPersona = -1; //
+    public int registrarPersona(String nombre, String fecha){
+         int idPersona = -1;
         try (Connection meow= new BD().establecerConexion()){
             String query = "INSERT INTO PERSONA (NOMBRE, FECHA_NACIMIENTO) VALUES (?, ?)";
-            PreparedStatement stmt = meow.prepareStatement(query);
+            PreparedStatement stmt = meow.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1,nombre);
-            LocalDate fechaNacimiento = fecha;  // Suponiendo que tienes un método para obtener la fecha de nacimiento
-            Date sqlDate = Date.valueOf(fechaNacimiento);
-            stmt.setDate(2, sqlDate);
+            stmt.setString(2, fecha);
             stmt.executeUpdate();
               // Obtener el ID generado
         ResultSet rs = stmt.getGeneratedKeys();
@@ -70,12 +68,11 @@ public abstract class Persona {
             JOptionPane.showMessageDialog(null, "Persona registrada correctamente");
         } catch (SQLException e){
             System.err.println("Error en el registro en la base de datos");
-            JOptionPane.showMessageDialog(null,"Error al registrar persona, intente de nuevo");
         }
         return idPersona;
     }
     
     
-    public abstract void registrarUsuario(String nombre, LocalDate fecha, String nombreusu, String rol, String contra);
+    public abstract void registrarUsuario(String nombre, String fecha, String nombreusu, String rol, String contra);
     
 }
