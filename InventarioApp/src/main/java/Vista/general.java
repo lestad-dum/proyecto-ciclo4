@@ -1,3 +1,5 @@
+package Vista;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -188,11 +190,15 @@ public class general extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+          this.dispose();
+       Manejo_Categorias c = new Manejo_Categorias();
+       c.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+       Manejo_Subcategorias n = new Manejo_Subcategorias();
+       n.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void boton_ingreso_manejo_productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_ingreso_manejo_productosActionPerformed
@@ -203,7 +209,7 @@ public class general extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_ingreso_manejo_productosActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -213,7 +219,9 @@ pro.setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+               this.dispose();
+       Manejo_Divisiones d = new Manejo_Divisiones();
+       d.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

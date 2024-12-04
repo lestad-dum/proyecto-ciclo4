@@ -90,14 +90,22 @@ public class Usuario extends Persona {
     
     @Override
     
- public void registrarUsuario() {
+ public void registrarUsuario(String nombre, LocalDate fecha, String nombreusu, String rol, String contra) {
+     
+       int idPersona = registrarPersona(nombre, fecha);
+    
+    if (idPersona == -1) {
+        JOptionPane.showMessageDialog(null, "Error al registrar persona, no se pudo obtener el ID.");
+        return;
+    }
+     
         String hashedPassword = hashPassword(this.hashContraseña); // Hashear la contraseña
         try (Connection con = new BD().establecerConexion()) {
             String query = "INSERT INTO USUARIOS (ID_PE, NOMBRE, ROL, HASH_CONTRASEÑA) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, this.getIdPersona());
-            stmt.setString(2, this.nombreUsuario);
-            stmt.setString(3, this.rol);
+            stmt.setInt(1, idPersona);
+            stmt.setString(2,nombreusu);
+            stmt.setString(3, rol);
             stmt.setString(4, hashedPassword);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");

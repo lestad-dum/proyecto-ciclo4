@@ -17,8 +17,8 @@ public class BD {
     
     Connection conectar = null;
     
-    String usuario = "kira";
-    String contrasenia = "indesifrable";
+    String usuario = "lestad";
+    String contrasenia = "Cr7goat2024";
     String bd="RADIOSHACK1";
     String ip="localhost";
     String puerto="1433";
@@ -30,9 +30,9 @@ public class BD {
     try{
      String cadena = "jdbc:sqlserver://localhost:1433;databaseName=RADIOSHACK1;encrypt=false;trustServerCertificate=true";      
      conectar=DriverManager.getConnection(cadena,usuario,contrasenia);
-        JOptionPane.showMessageDialog(null, "Se conecto correctamente a la Base de Datos");
+       System.out.println("Se conecto correctamente a la Base de Datos");
     } catch (Exception e){
-        JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos, error:" + e.toString());
+        System.out.println("Fallo en conectarse a la Base de datos");
     }
     return conectar;
     }
