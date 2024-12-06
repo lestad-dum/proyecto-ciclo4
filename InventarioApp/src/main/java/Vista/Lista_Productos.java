@@ -1,7 +1,11 @@
 package Vista;
 
 
+import Modelo.Productos;
 import Vista.Manejo_Productos;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -37,13 +41,13 @@ public class Lista_Productos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jTextField2 = new javax.swing.JTextField();
+        jCheckBoxcodigo = new javax.swing.JCheckBox();
+        codigoproducto = new javax.swing.JTextField();
+        jcheckboxnombre = new javax.swing.JCheckBox();
+        productonombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jTextField3 = new javax.swing.JTextField();
+        jCheckBoxdivision = new javax.swing.JCheckBox();
+        codigodivision = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,40 +110,84 @@ public class Lista_Productos extends javax.swing.JFrame {
         });
         jTable1.setGridColor(new java.awt.Color(102, 102, 102));
         jTable1.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Filtrar producto:");
 
-        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBox1.setText("Por codigo");
+        jCheckBoxcodigo.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBoxcodigo.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jCheckBoxcodigo.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBoxcodigo.setText("Por codigo");
+        jCheckBoxcodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxcodigoActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setBackground(new java.awt.Color(150, 71, 71));
-        jTextField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        codigoproducto.setBackground(new java.awt.Color(150, 71, 71));
+        codigoproducto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        codigoproducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoproductoActionPerformed(evt);
+            }
+        });
 
-        jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBox2.setText("Por nombre");
+        jcheckboxnombre.setBackground(new java.awt.Color(255, 255, 255));
+        jcheckboxnombre.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jcheckboxnombre.setForeground(new java.awt.Color(0, 0, 0));
+        jcheckboxnombre.setText("Por nombre");
+        jcheckboxnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcheckboxnombreActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setBackground(new java.awt.Color(150, 71, 71));
-        jTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        productonombre.setBackground(new java.awt.Color(150, 71, 71));
+        productonombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        productonombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productonombreActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Buscar");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jCheckBox3.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckBox3.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jCheckBox3.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBox3.setText("Por codigo división");
+        jCheckBoxdivision.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBoxdivision.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jCheckBoxdivision.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBoxdivision.setText("Por codigo división");
+        jCheckBoxdivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxdivisionActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setBackground(new java.awt.Color(150, 71, 71));
-        jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        codigodivision.setBackground(new java.awt.Color(150, 71, 71));
+        codigodivision.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        codigodivision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigodivisionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -158,17 +206,17 @@ public class Lista_Productos extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jCheckBox1)
+                        .addComponent(jCheckBoxcodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(codigoproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jCheckBox2)
+                        .addComponent(jcheckboxnombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(productonombre, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jCheckBox3)
+                        .addComponent(jCheckBoxdivision)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(codigodivision, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))))
@@ -181,13 +229,13 @@ public class Lista_Productos extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBoxcodigo)
+                    .addComponent(codigoproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcheckboxnombre)
+                    .addComponent(productonombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBoxdivision)
+                    .addComponent(codigodivision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
                 .addContainerGap())
@@ -212,6 +260,147 @@ this.dispose();
 Manejo_Productos pro = new Manejo_Productos();
 pro.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorAdded
+                         
+    System.out.println("Evento AncestorAdded ejecutado");
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);  // Limpiar filas previas
+
+    Productos pro = new Productos(0, 0, "", "", 0.0, 0, "", "");
+    List<Productos> list = pro.obtenerTodosLosProductos();
+    System.out.println("Cantidad de productos: " + list.size()); // Verificar si se obtienen productos
+
+    for (Productos p : list) {
+        Object[] fila = {
+            p.getId_producto(),
+            p.getId_division(),
+            p.getNombre(),
+            p.getPrecio(),
+            p.getCantidad_stock(),
+            p.getMarca(),
+            p.getColor(),
+            p.getDescripcion()
+        };
+        model.addRow(fila);
+    }
+ 
+    }//GEN-LAST:event_jTable1AncestorAdded
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0); // Limpiar la tabla antes de realizar la búsqueda
+    
+    // 1. Verificar si el checkbox "Buscar por código" está seleccionado
+    if (jCheckBoxcodigo.isSelected()) {
+        try {
+            int codigo = Integer.parseInt(codigoproducto.getText()); // Obtener el código del producto
+            List<Productos> listaProductos = new Productos(codigo,0,"","",0.0,0,"","").buscarPorCodigo(codigo); // Llamar al método de búsqueda por código
+            
+            if (listaProductos.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No se encontró el producto con ese código de producto");
+            } else {
+                // Agregar los productos encontrados a la tabla
+                for (Productos p : listaProductos) {
+                    Object[] fila = {
+                        p.getId_producto(),
+                        p.getId_division(),
+                        p.getNombre(),
+                        p.getDescripcion(),
+                        p.getPrecio(),
+                        p.getCantidad_stock(),
+                        p.getMarca(),
+                        p.getColor()
+                    };
+                    model.addRow(fila);
+                }
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un código válido");
+        }
+    }
+    
+    // 2. Verificar si el checkbox "Buscar por nombre" está seleccionado
+    else if (jcheckboxnombre.isSelected()) {
+        String nombre = productonombre.getText(); // Obtener el nombre del producto
+        List<Productos> listaProductos = new Productos(0,0,nombre,"",0.0,0,"","").buscarProducto(nombre); // Llamar al método de búsqueda por nombre
+        
+        if (listaProductos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se encontraron productos con ese nombre");
+        } else {
+            // Agregar los productos encontrados a la tabla
+            for (Productos p : listaProductos) {
+                Object[] fila = {
+                    p.getId_producto(),
+                    p.getId_division(),
+                    p.getNombre(),
+                    p.getDescripcion(),
+                    p.getPrecio(),
+                    p.getCantidad_stock(),
+                    p.getMarca(),
+                    p.getColor()
+                };
+                model.addRow(fila);
+            }
+        }
+    }
+    
+    // 3. Verificar si el checkbox "Buscar por código de división" está seleccionado
+    else if (jCheckBoxdivision.isSelected()) {
+        try {
+            int codigoDivision = Integer.parseInt(codigodivision.getText()); // Obtener el código de división
+            List<Productos> listaProductos = new Productos(0,codigoDivision,"","",0.0,0,"","").buscarPorCodigoDivision(codigoDivision); // Llamar al método de búsqueda por código de división
+
+            if (listaProductos.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No se encontraron productos con ese código de división");
+            } else {
+                // Agregar los productos encontrados a la tabla
+                for (Productos p : listaProductos) {
+                    Object[] fila = {
+                        p.getId_producto(),
+                        p.getId_division(),
+                        p.getNombre(),
+                        p.getDescripcion(),
+                        p.getPrecio(),
+                        p.getCantidad_stock(),
+                        p.getMarca(),
+                        p.getColor()
+                    };
+                    model.addRow(fila);
+                }
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un código de división válido");
+        }
+    }
+        
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCheckBoxcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxcodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxcodigoActionPerformed
+
+    private void codigoproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoproductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigoproductoActionPerformed
+
+    private void jcheckboxnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcheckboxnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcheckboxnombreActionPerformed
+
+    private void productonombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productonombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productonombreActionPerformed
+
+    private void jCheckBoxdivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxdivisionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxdivisionActionPerformed
+
+    private void codigodivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigodivisionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigodivisionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,19 +441,19 @@ pro.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField codigodivision;
+    private javax.swing.JTextField codigoproducto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBoxcodigo;
+    private javax.swing.JCheckBox jCheckBoxdivision;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JCheckBox jcheckboxnombre;
+    private javax.swing.JTextField productonombre;
     // End of variables declaration//GEN-END:variables
 }

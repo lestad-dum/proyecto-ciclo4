@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.util.List;
+
 /**
  *
  * @author Usuario
@@ -13,6 +15,8 @@ public interface IProductos {
     void agregarProducto(int id_division, String nombre, String descripcion, double precio, int cantidad_stock, String marca, String colo);
     void eliminarProducto();
     void actualizarStock();
-    void buscarProducto();
+     List<Productos> buscarProducto(String nombre);
+     List<Productos> buscarPorCodigo(int codigo);
+     List<Productos> buscarPorCodigoDivision(int codigoDivision);
 }
 

@@ -1,6 +1,7 @@
 package Vista;
 
 
+import Modelo.Division;
 import Modelo.Productos;
 import Vista.Manejo_Productos;
 import javax.swing.JOptionPane;
@@ -313,6 +314,13 @@ String descrip= Descripcion.getText();
 int divison= Integer.parseInt(division.getText());
   String colo= Color.getText();
   
+    Division dibi = new Division(divison,0,0,"");
+  
+  if (!dibi.Verificar_Existenciadivision(divison)){
+      JOptionPane.showMessageDialog(this, "La división con ID " + divison + " no existe. Verifique los datos.");
+      return;
+  }
+ 
 Productos nuevoProducto = new Productos(0, divison, nombre, descrip, precio, stock, marc, colo);
 
 try{

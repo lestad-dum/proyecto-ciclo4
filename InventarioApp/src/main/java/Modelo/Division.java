@@ -103,7 +103,30 @@ public class Division {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        } 
     }
+    
+    public boolean Verificar_Existenciadivision (int codigo){
+        
+        BD conexion = new BD();
+        Connection conn = conexion.establecerConexion();
+        
+        String query = "SELECT COUNT (*) FROM DIVISION WHERE ID_DIVISION = ?";
+        try ( PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setInt(1, codigo);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()){
+                int count = rs.getInt(1);
+                return count >0;
+            }
+            
+        }catch ( SQLException e){
+            System.err.println("Error al verificar existencia de la division");
+        }
+        return false;
+    }
+    
+    
 }
 

@@ -43,6 +43,11 @@ public class Manejo_Categorias extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(181, 73, 73));
         jButton1.setText("Ingresar Categoria");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(188, 66, 66));
         jButton2.setText("Lista Categoria");
@@ -107,6 +112,10 @@ public class Manejo_Categorias extends javax.swing.JFrame {
       general n = new general();
        n.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
